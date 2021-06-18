@@ -11,4 +11,7 @@ public interface BoardDAO {
 	
 	// 게시물 목록 조회
 	public List<BoardVO> list() throws Exception;
+	
+	// 게시물 조회
+	public BoardVO read(int bno) throws Exception; //xml에서 bno값으로 조회하기 때문에 bno값을 넘겨준다
 }

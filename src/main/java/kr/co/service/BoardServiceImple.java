@@ -27,5 +27,12 @@ public class BoardServiceImple implements BoardService {
 
 		return dao.list();
 	}
+	
+	// 게시물 목록 조회
+	@Override
+	public BoardVO read(int bno) throws Exception {
+
+		return dao.read(bno);
+	}
 
 }
