@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.vo.BoardVO;
+import kr.co.vo.Criteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -19,35 +20,35 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public void write(BoardVO boardVO) throws Exception {
 		sqlSession.insert("boardMapper.insert", boardVO);
-		
 	}
 	
 	// 게시물 목록 조회
 	@Override
-	public List<BoardVO> list() throws Exception {
+	public List<BoardVO> list(Criteria cri) throws Exception {
+		return sqlSession.selectList("boardMapper.listPage", cri);
+	}
 	
-		return sqlSession.selectList("boardMapper.list");
-
+	// 게시물 총 갯수
+	@Override
+	public int listCount() throws Exception {
+		return sqlSession.selectOne("boardMapper.listCount");
 	}
 	
 	// 게시물 조회
 	@Override
 	public BoardVO read(int bno) throws Exception {
-			
 		return sqlSession.selectOne("boardMapper.read", bno);//bno값을 넘겨준다 
 	}
 	
 	// 게시글 수정
 	@Override
 	public void update(BoardVO boardVO) throws Exception {
-		
 		sqlSession.update("boardMapper.update", boardVO);
 	}
 	
 	// 게시글 삭제
 	@Override
 	public void delete(int bno) throws Exception {
-		
 		sqlSession.delete("boardMapper.delete", bno);
 	}
 

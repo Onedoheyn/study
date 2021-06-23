@@ -17,14 +17,32 @@
    
    </insert>
    
-   <!-- 게시판 글 보여주기 -->
-   <select id="list" resultType="kr.co.vo.BoardVO">
+   <!-- 게시판 글 보여주기 --> <!-- pageing 때문에 쿼리수정 -->
+   <select id="listPage" resultType="kr.co.vo.BoardVO" parameterType="kr.co.vo.Criteria">
 		SELECT   BNO
 			   , TITLE
 			   , WRITER
 			   , REGDATE
-		  FROM MP_BOARD
+		  FROM (
+		  		SELECT BNO,
+		  			   TITLE,
+		  			   CONTENT,
+		  			   WRITER,
+		  			   REGDATE,
+		  			   ROW_NUMBER() OVER(ORDER BY BNO DESC) AS RNUM
+		  		FROM MP_BOARD
+		  						)MP
+		  WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		  ORDER BY BNO DESC
+	</select>
+	
+	<!-- 게시판 글 수 -->
+	<select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(BNO)
+			FROM MP_BOARD
+			WHERE BNO >0
+	]]>
 	</select>
 	
 	<!-- 게시판 상세보기 -->
