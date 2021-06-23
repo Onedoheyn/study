@@ -14,4 +14,10 @@ public interface BoardDAO {
 	
 	// 게시물 조회
 	public BoardVO read(int bno) throws Exception; //xml에서 bno값으로 조회하기 때문에 bno값을 넘겨준다
+	
+	// 게시글 수정
+	public void update(BoardVO boardVO) throws Exception;
+	
+	// 게시글 삭제
+	public void delete(int bno) throws Exception;
 }

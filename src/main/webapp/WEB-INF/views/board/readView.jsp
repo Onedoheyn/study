@@ -3,7 +3,35 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 	<head>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	 	<title>게시판</title>
+	 	
+	 	<!--수정 삭제 목록 스크립트-->
+	 	<script type="text/javascript">
+	 		$(document).ready(function(){
+	 			var formObj = $("form[name='readForm']");
+	 			
+	 			//수정
+	 			$(".update_btn").on("click", function(){
+	 				formObj.attr("action","/board/updateView");
+	 				formObj.attr("method","get");
+	 				formObj.submit();
+	 			})
+	 			
+	 			//삭제
+	 			$(".delete_btn").on("click", function(){
+	 				formObj.attr("action","/board/delete");
+	 				formObj.attr("method","post");
+	 				formObj.submit();
+	 			})
+	 			
+	 			//취소
+	 			$(".list_btn").on("click", function(){
+	 				location.href = "/board/list";
+	 			})
+	 		})
+	 	</script>
+	 	
 	</head>
 	<body>
 	
@@ -19,7 +47,9 @@
 			<hr />
 			
 			<section id="container">
-				<form role="form" method="post">
+				<form name="readForm" role="form" method="post">
+					<input type="hidden" id="bno" name="bno" value="${read.bno}"/>
+				</form>
 					<table>
 						<tbody>
 							<tr>
@@ -50,7 +80,11 @@
 							</tr>		
 						</tbody>			
 					</table>
-				</form>
+					<div>
+						<button type="submit" class="update_btn">수정</button>
+						<button type="submit" class="delete_btn">삭제</button>
+						<button type="submit" class="list_btn">목록</button>
+					</div>
 			</section>
 			<hr />
 		</div>

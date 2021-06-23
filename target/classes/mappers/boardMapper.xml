@@ -17,6 +17,7 @@
    
    </insert>
    
+   <!-- 게시판 글 보여주기 -->
    <select id="list" resultType="kr.co.vo.BoardVO">
 		SELECT   BNO
 			   , TITLE
@@ -26,6 +27,7 @@
 		  ORDER BY BNO DESC
 	</select>
 	
+	<!-- 게시판 상세보기 -->
 	<select id="read" parameterType="int" resultType="kr.co.vo.BoardVO">
 		SELECT	BNO
 			  , TITLE
@@ -35,4 +37,21 @@
 		 FROM MP_BOARD
 		 WHERE BNO = #{bno}
 	</select>
+	
+	<!-- 게시슬 수정 -->
+	<update id="update" parameterType="kr.co.vo.BoardVO">
+		UPDATE MP_BOARD
+			SET TITLE   =  #{title},
+				CONTENT 	=	#{content}
+		 WHERE BNO = #{bno}
+	</update>
+
+	<!-- 게시글 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM MP_BOARD
+			WHERE BNO = #{bno}
+	</delete>
+
+	
+	
 </mapper>

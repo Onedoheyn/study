@@ -1,5 +1,8 @@
-INSERT INTO MP_BOARD(BNO, TITLE, CONTENT, WRITER)
-     VALUES (MP_BOARD_SEQ.NEXTVAL, '제목입니다', '내용입니다', 'MELONPEACH');
 
-SELECT * FROM MP_BOARD;
-COMMIT;
+
+update MP_BOARD set title ='안녕하세요' where bno=21;
+
+
+select * from MP_BOARD;
+
+delete from MP_BOARD where bno = 21;
