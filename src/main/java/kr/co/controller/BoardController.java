@@ -1,10 +1,13 @@
 package kr.co.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,19 +15,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.service.BoardService;
+import kr.co.service.ReplyService;
 import kr.co.vo.BoardVO;
 import kr.co.vo.Criteria;
 import kr.co.vo.PageMaker;
+import kr.co.vo.ReplyVO;
 import kr.co.vo.SearchCriteria;
 
 @Controller
 @RequestMapping("/board/*")
+@Repository
 public class BoardController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Inject
 	BoardService service;
+	
+	@Inject
+	ReplyService replyService;
 
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "/board/writeView", method = RequestMethod.GET)
@@ -67,6 +76,11 @@ public class BoardController {
 
 		model.addAttribute("read", service.read(boardVO.getBno()));
 		model.addAttribute("scri",scri);
+		
+		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
+		
+		model.addAttribute("replyList",replyList);
+		
 		return "board/readView";
 	}
 

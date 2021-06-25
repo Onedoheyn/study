@@ -7,7 +7,34 @@ select * from MP_BOARD;
 
 delete from MP_BOARD where bno = 21;
 
-
+/*현재 디비에 있는 데이터 배로 늘리는 sql문*/
 insert into mp_board(bno,title,content,writer)
 select mp_board_seq.nextval,title,content,writer from mp_board;
 commit;
+
+
+
+/*댓글 쿼리,시퀀스*/
+create table mp_reply (
+	bno number not null,
+	rno number not null,
+	content varchar2(1000) not null,
+	writer varchar2(50) not null,
+	regdate date default sysdate,
+	primary key(bno, rno)
+);
+
+alter table mp_reply add constraint mp_reply_bno foreign key(bno)
+references mp_board(bno);
+
+create sequence mp_reply_seq START WITH 1 MINVALUE 0;
+
+/*댓글 테스트용 쿼리작성*/
+insert into mp_reply(bno, rno, content, writer)
+	values(381, MP_REPLY_seq.nextval,'테스트댓글','테스트 작성자');
+
+select rno, content, writer,regdate
+	from mp_reply
+	where bno = 381;
+
+
