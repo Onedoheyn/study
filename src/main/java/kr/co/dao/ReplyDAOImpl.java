@@ -19,5 +19,11 @@ public class ReplyDAOImpl implements ReplyDAO{
 	public List<ReplyVO> readReply(int bno) throws Exception{//bno값을 받아서 .xml의 readReply에 bno값을 넘겨준다
 		return sql.selectList("replyMapper.readReply",bno);//bno값을 넘겨준다
 	}
+	
+	//댓글작성
+	@Override
+	public void writeReply(ReplyVO vo) throws Exception{
+		sql.insert("replyMapper.writeReply",vo);
+	}
 
 }

@@ -21,5 +21,11 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<ReplyVO> readReply(int bno) throws Exception{
 		return dao.readReply(bno);//dao에 있는 readReply메소드를 실행(bno)값을 넘겨준다
 	}
+	
+	//댓글 작성
+	@Override
+	public void writeReply(ReplyVO vo) throws Exception{
+		dao.writeReply(vo);
+	}
 
 }

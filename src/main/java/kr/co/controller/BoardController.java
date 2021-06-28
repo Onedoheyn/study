@@ -130,4 +130,21 @@ public class BoardController {
 
 		return "redirect:/board/list";
 	}
+	
+	//댓글 작성
+	@RequestMapping(value = "/replyWrite", method = RequestMethod.POST)
+	public String replyWrite(ReplyVO vo,@ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+		logger.info("replyWrite");
+
+		replyService.writeReply(vo);
+		
+		//넘겨주는 값들(페이징 검색기능을 유지하기위해)
+		rttr.addAttribute("bno",vo.getBno());
+		rttr.addAttribute("page",scri.getPage());
+		rttr.addAttribute("perPageNum",scri.getPerPageNum());
+		rttr.addAttribute("searchType",scri.getSearchType());
+		rttr.addAttribute("keyword",scri.getKeyword());
+
+		return "redirect:/board/readView";
+	}
 }

@@ -6,12 +6,27 @@
 <!-- 댓글 -->  
 <mapper namespace="replyMapper">
 
-<!-- 댓글 조회 -->
+	<!-- 댓글 조회 -->
 	<select id="readReply" resultType="kr.co.vo.ReplyVO">
     	SELECT
     		  RNO, CONTENT, WRITER, REGDATE
     	 FROM MP_REPLY
     	WHERE BNO = #{bno}
+    	ORDER BY RNO
 	</select>
+	
+	<!-- 댓글 작성 -->
+	<insert id="writeReply">
+	INSERT INTO MP_REPLY(
+							BNO,
+							RNO,
+							CONTENT,
+							WRITER)
+					VALUES(
+							#{bno},
+							MP_REPLY_SEQ.NEXTVAL,
+							#{content},
+							#{writer})
+	</insert>
 
 </mapper>
