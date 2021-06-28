@@ -12,12 +12,14 @@ import kr.co.vo.ReplyVO;
 @Service
 public class ReplyServiceImpl implements ReplyService {
 	
+	//ReplyDAO를 사용하기 위해
 	@Inject
 	private ReplyDAO dao;
 	
+	//댓글 조회
 	@Override
 	public List<ReplyVO> readReply(int bno) throws Exception{
-		return dao.readReply(bno);
+		return dao.readReply(bno);//dao에 있는 readReply메소드를 실행(bno)값을 넘겨준다
 	}
 
 }

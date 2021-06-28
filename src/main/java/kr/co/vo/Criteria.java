@@ -2,10 +2,10 @@ package kr.co.vo;
 
 public class Criteria {
 	
-	private int page;
-	private int perPageNum;
-	private int rowStart;
-	private int rowEnd;
+	private int page;//페이지
+	private int perPageNum;//페이지번호
+	private int rowStart;//줄시작
+	private int rowEnd;//줄끝
 	
 	public Criteria(){
 		this.page = 1;

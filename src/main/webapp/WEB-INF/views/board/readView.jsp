@@ -61,6 +61,7 @@
 			<hr />
 			
 			<section id="container">
+				<!-- 취소나 목록을 눌렀을때 페이징및검색이 유지되도록 값을 넘겨주어야한다. -->
 				<form name="readForm" role="form" method="post">
 					<input type="hidden" id="bno" name="bno" value="${read.bno}"/>
 					<input type="hidden" id="page" name="page" value="${scri.page}"/>

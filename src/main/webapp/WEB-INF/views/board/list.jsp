@@ -4,11 +4,8 @@
 <html>
 	<head>
 	 	<title>게시판</title>
+	 	<!-- jquery를 사용 -->
 	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	 	
-	 	<meta charset="UTF-8"> 
-	 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-	 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 	 	<!-- li태그 가로로 정렬 -->
 	 	<style type="text/css">
@@ -22,7 +19,7 @@
 			</header>
 			<hr />
 			 
-			<div>
+			<div><!-- nav.jsp를 적용 -->
 				<%@include file="nav.jsp" %>
 			</div>
 			
@@ -33,7 +30,7 @@
 					<table>
 						<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
 						
-						<c:forEach items="${list}" var = "list">
+						<c:forEach items="${list}" var = "list"><!-- 게시글 출력 -->
 							<tr>
 								<td><c:out value="${list.bno}" /></td>
 								<td>
@@ -41,7 +38,7 @@
 															page=${scri.page }&
 															perPageNum=${scri.perPageNum }&
 															searchType=${scri.searchType }&
-															keyword=${scri.keyword }">
+															keyword=${scri.keyword }"> <!-- 링크를 걸어 클릭시 readView로 넘어감(값도 넘어가짐) -->
 									<c:out value="${list.title}" /></a>
 								</td>
 								<td><c:out value="${list.writer}" /></td>

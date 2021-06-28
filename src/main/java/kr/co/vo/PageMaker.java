@@ -8,13 +8,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMaker {
 	
-	private int totalCount;
-	private int startPage;
-	private int endPage;
-	private boolean prev;
-	private boolean next;
-	private int displayPageNum = 10;
-	private Criteria cri;
+	private int totalCount;//게시물 총갯수
+	private int startPage;//페이지 시작
+	private int endPage;//페이지 끝
+	private boolean prev;//이전(◀)
+	private boolean next;//다음(▶)
+	private int displayPageNum = 10;//페이지에 보여주는갯수
+	private Criteria cri;//Criteria를 사용
 	
 	public void setCri(Criteria cri){
 		this.cri = cri;
@@ -53,7 +53,7 @@ public class PageMaker {
 		return cri;
 	}
 	
-	private void calcData(){
+	private void calcData(){//페이지에 지정된 게시물만 출력해주도록
 		endPage = (int)(Math.ceil(cri.getPage() / (double)displayPageNum)* displayPageNum);
 		startPage = (endPage - displayPageNum) + 1;
 		
@@ -74,7 +74,7 @@ public class PageMaker {
 		return uriComponents.toUriString();
 	}
 	
-	public String makeSearch(int page)
+	public String makeSearch(int page)//검색기능
 	{
 	  
 	 UriComponents uriComponents =
@@ -87,7 +87,7 @@ public class PageMaker {
 	    return uriComponents.toUriString();  
 	}
 
-	private String encoding(String keyword) {
+	private String encoding(String keyword) {//한글 인코딩
 		if(keyword == null || keyword.trim().length() == 0) { 
 			return "";
 		}

@@ -2,13 +2,14 @@ package kr.co.vo;
 
 import java.util.Date;
 
+//게시글 VO
 public class BoardVO {
 	
 	private int bno; //번호
 	private String title; //제목
 	private String content; //내용
-	private String writer; 
-	private Date regdate;
+	private String writer; //작성자
+	private Date regdate; //작성일
 	
 	//get,set 생성 
 	public int getBno() {

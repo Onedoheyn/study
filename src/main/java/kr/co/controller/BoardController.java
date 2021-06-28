@@ -27,12 +27,15 @@ import kr.co.vo.SearchCriteria;
 @Repository
 public class BoardController {
 
+	//로그 출력하기 위한
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Inject
+	//게시판을 사용하기 위해
 	BoardService service;
 	
 	@Inject
+	//댓글을 사용하기 위해
 	ReplyService replyService;
 
 	// 게시판 글 작성 화면
@@ -47,6 +50,7 @@ public class BoardController {
 	public String write(BoardVO boardVO) throws Exception {
 		logger.info("write");
 
+		//작성된 값이 write라는 xml를 통해 데이터가 insert됨
 		service.write(boardVO);
 
 		return "redirect:/board/list";
@@ -63,6 +67,7 @@ public class BoardController {
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.listCount(scri));
 		
+		//.jsp에 값을 넘겨주기 위해 
 		model.addAttribute("pageMaker", pageMaker);
 		
 		return "board/list";
@@ -101,6 +106,7 @@ public class BoardController {
 
 		service.update(boardVO);
 
+		//넘겨주는 값들(페이징 검색기능을 유지하기위해)
 		rttr.addAttribute("page",scri.getPage());
 		rttr.addAttribute("perPageNum",scri.getPerPageNum());
 		rttr.addAttribute("searchType",scri.getSearchType());
@@ -116,6 +122,7 @@ public class BoardController {
 
 		service.delete(bno);
 		
+		//넘겨주는 값들(페이징 검색기능을 유지하기위해)
 		rttr.addAttribute("page",scri.getPage());
 		rttr.addAttribute("perPageNum",scri.getPerPageNum());
 		rttr.addAttribute("searchType",scri.getSearchType());

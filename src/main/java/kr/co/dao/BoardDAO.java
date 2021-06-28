@@ -6,6 +6,7 @@ import kr.co.vo.BoardVO;
 import kr.co.vo.Criteria;
 import kr.co.vo.SearchCriteria;
 
+//게시물 DAO
 public interface BoardDAO {
 
 	// 게시글 작성

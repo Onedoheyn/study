@@ -2,13 +2,15 @@ package kr.co.vo;
 
 import java.util.Date;
 
+//댓글VO
 public class ReplyVO {
 
-	private int bno;
-	private int rno;
-	private String content;
-	private String writer;
-	private Date regdate;
+	private int bno;//게시글 번호
+	private int rno;//댓글 번호
+	private String content;//내용
+	private String writer;//작성자
+	private Date regdate;//작성일
+	
 	public int getBno() {
 		return bno;
 	}

@@ -1,9 +1,10 @@
 package kr.co.vo;
 
+//검색기능
 public class SearchCriteria extends Criteria{
 
-	private String searchType = "";
-	private String keyword = "";
+	private String searchType = "";//검색키워드(제목,내용,작성자등)
+	private String keyword = "";//검색키워드
 	 
 	public String getSearchType() {
 		return searchType;
