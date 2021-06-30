@@ -35,6 +35,13 @@ insert into mp_reply(bno, rno, content, writer)
 
 select rno, content, writer,regdate
 	from mp_reply
-	where bno = 381;
+	where bno = 381
+	ORDER BY RNO;
+	
+/*DB연결이 끈어지고 재접속할때마다 시퀀스제약조건 때문에 1 10 20 이런식으로 증가해서 사용안하기 위한 명령문*/
+alter sequence mp_reply_seq nocache;
+
+
+
 
 
